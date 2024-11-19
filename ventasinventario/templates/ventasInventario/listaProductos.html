@@ -1,0 +1,34 @@
+{% extends "ventasinventario/base.html" %}
+
+{% block content %}
+
+
+{% if lista %}
+
+
+<h2 style="margin-left: 2.5rem; margin-top: 1rem;">Lista de productos</h2>
+{% for p in lista %}
+
+<div style="display: inline-block; margin-top: 2rem;">
+  <div class="card" style="width: 18rem; margin-left: 2.3rem;">
+    {% if p.imagen %}
+      <img style="height: 19rem;" src="{{ p.imagen.url }}" alt="imagen de producto">
+      {% endif %}
+      <div class="card-body">
+        <h5 class="card-title">{{p.nombre}}</h5>
+        <div style="display: flex;">
+            <h6 style="margin-right: 1rem;" class="card-text">precio: {{p.precio}}</h6>
+            <h6 class="card-text">cantidad: {{p.cantidad}}</h6>
+        </div>
+        <p class="card-text">{{p.descripcion}}</p>
+        <a class="btn btn-primary" href="{% url "modificarProducto" p.id %}">actualizar</a>
+        <a class="btn btn-danger" href="{% url "eliminarProducto" p.id %}">eliminar</a>
+      </div>
+  </div>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock  %}

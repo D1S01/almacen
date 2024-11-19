@@ -1,0 +1,46 @@
+{% extends "ventasinventario/ventas.html" %}
+
+{% block content %}
+
+<h2>lista ventas</h2>
+{% if historial %}
+
+{% for v in historial %}
+
+<div >
+    <table style="width: 65rem;" class="table table-striped">
+        <thead>
+            <tr>
+                <th>fecha</th>
+                <th>total</th>
+                <th>monto recibido</th>
+                <th>productos</th>
+                <th>vendedor</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{v.fecha}}</td>
+                <td>{{v.total}}</td>
+                <td>{{v.montoRecibido}}</td>
+                <td>{% for p in v.producto.all %}
+                    <ul>
+                        <li>{{p.nombre}}</li>                    
+                    </ul>
+                    {% endfor %}
+                </td>
+                {% if v.administrador %}
+                    <td>{{v.administrador}}</td>
+                {% else %}
+                <td>no hay usuario asociado</td>
+                {% endif %}
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+{% endfor %}
+
+{% endif %}
+
+{% endblock  %}

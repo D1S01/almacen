@@ -1,0 +1,15 @@
+{% extends "ventasinventario/base.html" %}
+
+{% block content %}
+
+{% if lista %}
+<h2>confirmar eliminar</h2>
+<form method="post">
+    {% csrf_token %}
+    <p>Esta seguro que desea eliminar el producto {{lista.nombre}}?</p>
+    <button class="btn btn-success">eliminar</button>
+    <a href="{% url "home" %}">volver</a>
+</form>
+{% endif %}
+
+{% endblock  %}

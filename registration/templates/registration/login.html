@@ -1,0 +1,22 @@
+{% extends "ventasinventario/base.html" %}
+
+{% block content %}
+
+<h2>login</h2>
+<form method="post">
+    {% csrf_token %}
+    
+    <p>
+        <input class="form-control" type="text" placeholder="usuario" name="username" required>
+    </p>
+    <p>
+        <input class="form-control" type="password" placeholder="contraseña" name="password" required>
+    </p>
+
+    {% if form.non_field_errors %}
+    <h2>usuario o contraseña incorrectos</h2>
+    {% endif %}
+    <button type="submit">entrar</button>
+</form>
+
+{% endblock  %}

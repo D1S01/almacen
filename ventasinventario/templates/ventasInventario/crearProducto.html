@@ -1,0 +1,16 @@
+{% extends "ventasinventario/base.html" %}
+
+{% block content %}
+
+<div style="width: 40rem;">
+    <h2>Crear producto</h2>
+    <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        
+    
+        <button class="btn btn-success" type="submit">crear</button>
+    </form>
+</div>
+
+{% endblock  %}
