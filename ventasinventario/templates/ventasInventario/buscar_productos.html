@@ -1,12 +1,12 @@
 <h1>Buscar Productos</h1>
-<form action="get" action="{% url 'buscar_productos' %}">
+<form method="get" action="{% url 'buscar_productos' %}">
     {{ form.as_p }}
     <button type="submit">Buscar</button>
 </form>
 
 <ul>
     {% for producto in resultados %}
-        <li>{{ producto.name }} - {{ producto.price }}</li>
+        <li>{{ producto.nombre }} - {{ producto.precio }}</li>
     {% empty %}
         <li>No se encontraron resultados</li>
     {% endfor %}

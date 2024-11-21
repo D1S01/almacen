@@ -57,15 +57,15 @@ class RealizarVentaView(CreateView):
         form.instance.administrador = admin
         self.object = form.save()
         return super().form_valid(form)
-    #Agregue este metodo aca por que no sabia si se puede agregar fuera de una "class", este metodo ayudara a buscar los productos que filtrara por nombre
-    def buscar_productos(request):
-        form = SearchForm()
-        resultados = []
+#Agregue este metodo aca por que no sabia si se puede agregar fuera de una "class", este metodo ayudara a buscar los productos que filtrara por nombre
+def buscar_productos(request):
+    form = SearchForm()
+    resultados = []
 
-        if 'query' in request.GET:
-            form = SearchForm(request.GET)
-            if form.is_valid():
-                query = form.cleaned_data['query']
-                resultados = Producto.objects.filter(name__icontains=query)
+    if 'query' in request.GET:
+        form = SearchForm(request.GET)
+        if form.is_valid():
+            query = form.cleaned_data['query']
+            resultados = Producto.objects.filter(nombre__icontains=query)
             
-            return render(request, 'ventasinventario/buscar_productos.html', {'form': form, 'resultados': resultados})
+    return render(request, 'ventasinventario/buscar_productos.html', {'form': form, 'resultados': resultados})
